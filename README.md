@@ -20,4 +20,4 @@ El curso se divide en dos sesiones:
 
 La primera edición del curso se impartió en el **ISS Biogipuzkoa** en noviembre de 2025, en el marco de las formaciones organizadas por las Unidades del centro.
 
-> **Nota:** Por favor, citar como: Lore Zumeta-Olaskoaga & Jone Renteria (2025): Curso de Introducción a R en investigación biomédica (curso IRIB). Repositorio Github. 
+> **Nota:** Por favor, citar como: Lore Zumeta-Olaskoaga & Jone Renteria (2025): Curso de Introducción a R en Investigación Biomédica (curso IRIB). Repositorio Github. https://github.com/IISBiogipuzkoaUAM/Curso_IntroduccionR/tree/main 
