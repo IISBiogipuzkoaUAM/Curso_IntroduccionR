@@ -1,0 +1,167 @@
+---
+title: "Curso Introducción a R en investigación biomédica"
+subtitle: "Solución ejercicios prácticos Módulo 1 & Módulo 2"
+author: "Unidad de Apoyo Metodológico IIS Biogipuzkoa - Lore Zumeta & Jone Renteria"
+date: "Noviembre 2025"
+output: pdf_document
+header-includes:
+  - \usepackage{graphicx}
+  - \usepackage{fancyhdr}
+  - \pagestyle{fancy}
+  - \fancyhead[R]{\includegraphics[width=2cm]{logo.jpg}}
+---
+
+\begin{flushright}
+\includegraphics[width=3cm]{logo.jpg}
+\end{flushright}
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 1. Operadores y variables
+
+**Crea un objeto `x` con el valor 10 y crea otro objeto `y` con el valor 3.  Utilizando ambos objetos, realiza la suma, multiplicación, resta y la potencia de x e y.**
+
+```{r}
+# Ejercicio 1 
+x <- 10 
+y <- 3
+
+# Suma 
+x+y
+
+# Multiplicación 
+x*y
+
+# Resta 
+x/y 
+
+# Potencia
+x^y 
+```
+
+## 2. Funciones básicas
+
+**a )Utilizando los valores de `x` e `y` anteriores, calcula, mediante la función ` sqrt()` la raiz cuadrada de `x` y guarda el resultado en el objeto denominado `raiz`. Luego hazlo visible en la consola.** 
+**b) Crea el vector con los números secuenciales del 1 al 5, y calcula la media.**
+
+```{r}
+# Ejercicio 2
+x <- 10 
+y <- 3
+
+# Raiz cuadrada  
+raiz <- sqrt(x)
+raiz # visualizamos
+
+# Media de un vector 
+media <- c(1,2,3,4,5)
+media <- seq(1:5) # otra manera más sencilla de generar el vector, sequencia del 1 al 5
+
+mean(media) # respuesta es = 3
+```
+
+## 3. Tipos de datos 
+
+**a)	Crea un vector de caracteres con los nombres “Amaia”, “Imanol” e “Irati”.**
+**b)	Extrae el segundo elemento del vector**
+**c)	Crea un vector lógico con los valores TRUE, FALSE y TRUE y comprueba su clase. Llámale logicos. ¿Crees que es posible escribirlo de otra manera?**
+**d)	Convierte un integer (por ejemplo el 10) en carácter, y guardalo en el objeto z. Comprueba su clase.**
+**e)	Genera un objeto que contenga tu edad en tipo carácter, llamale edad. Comprueba su clase. Conviértelo (con el mismo nombre) a numérico. Vuelve a comprobar la clase y observa si realmente ha cambiado.**
+
+```{r}
+# Ejercicio 3
+
+# Vector de caracteres (3 elementos)
+nombres <- c("Amaia", "Imanol", "Irati")
+
+# Extrae el segundo elemento del vector de nombres
+nombres[2]
+
+# Crea un vector lógico (3 elementos)
+logicos <- c(TRUE, FALSE, F) # Es lo mismo poner T o TRUE o F y FALSE 
+
+# Comprueba la clase del vector lógcio, es realmente del tipo que querías?
+class(logicos)
+
+# Convierte cualquier integer a caracter y guárdalo como objeto z
+z <- as.character(10)
+class(z)
+
+# Genera un objeto que contenga tu edad en tipo carácter, llamale edad. Comprueba su clase. Conviértelo (con el mismo nombre) a numérico. Vuelve a comprobar la clase y observa si realmente ha cambiado. 
+edad <- "30"
+class(edad)
+edad <- as.numeric(edad)
+class(edad)
+```
+
+## 4. Factores
+
+**a)	Con el factor denominado paises, comprueba cuáles son sus niveles y cuenta cúantos niveles hay.**
+**paises <- factor(c("Francia", "Italia", "España", "Portugal"))**
+
+```{r}
+# Ejercicio 4 
+# Con el siguiente factor denominado paises, comprueba cuales son sus niveles y cuenta cuantos niveles hay 
+paises <- factor(c("Francia", "Italia", "España", "Portugal"))
+# Niveles
+levels(paises)
+
+# número de niveles 
+nlevels(paises)
+```
+
+## 5. Data frame
+
+**a)	Crea un data frame con tres columnas: nombre, edad y sexo, y tres filas con datos ficticios.Llámalo df.**
+**b)	Consulta los nombres de las columnas.**
+**c)	Averigua cuántas filas y columnas tiene.**
+
+```{r}
+# Ejercicio 5
+df <- data.frame(nombre = c("Maialen","Igor","Alejandra"),
+                 edad = c(23, 35, 29),
+                 sexo = c("Mujer","Hombre","Mujer"))
+
+# Muestra el nombre de las variables del dataframe 
+colnames(df)
+
+# Cuantas columnas y cuantas observaciones tenemos? 
+nrow(df) # filas == observaciones
+ncol(df) # columnas == variables 
+```
+
+## 6. Importa un archivo .csv
+
+Importa un archivo CSV llamado diabetes.csv en un objeto llamado datos.
+
+```{r}
+# Ejercicio 6
+datos <- read.csv("diabetes.csv")
+```
+
+## 7. Crea tu propio dataset 
+
+Crea un dataset llamado *pacientes* con las siguientes columnas:
+- id (del 1 al 5)
+- nombre (cinco nombres ficticios)
+- edad (cinco edades ficticias)
+- resultado_test (valores “Positivo” o “Negativo”) 
+
+```{r}
+# Ejercicio 7
+pacientes <- data.frame(id = 1:5,
+                        nombre = c("Antton","Pedro","Marta","Ane","Maria"),
+                        edad = c(18,35,21,40,31),
+                        resultado_test= c("Positivo","Negativo","Negativo","Positivo","Negativo"))
+```
+
+## 8. Exportación de datos 
+
+Exporta el data frame creado en el ejercicio anterior a un archivo CSV llamado **pacientes_dataset.csv** sin incluir los nombres de fila.
+
+```{r}
+# Ejercicio 8
+write.csv(pacientes, "pacientes_dataset.csv", row.names = FALSE)
+```

@@ -1,0 +1,104 @@
+---
+title: "Curso Introducción a R en investigación biomédica"
+subtitle: "Solución ejercicios prácticos Modulo3 - Estadística descriptiva con R"
+author: "Unidad de Apoyo Metodológico IIS Biogipuzkoa - Lore Zumeta & Jone Renteria"
+date: "Noviembre 2025"
+output: pdf_document
+header-includes:
+  - \usepackage{graphicx}
+  - \usepackage{fancyhdr}
+  - \pagestyle{fancy}
+  - \fancyhead[R]{\includegraphics[width=2cm]{logo.jpg}}
+---
+
+\begin{flushright}
+\includegraphics[width=3cm]{logo.jpg}
+\end{flushright}
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 1. Explora el dataset
+
+**Carga los datos descargados en formato CSV. Usa `str()` y `summary()` para inspeccionar la estructura y obtener un resumen de las variables.**
+
+```{r}
+# Cargar datos desde CSV (ajusta la ruta al archivo descargado)
+diabetes <- read.csv("diabetes.csv")
+
+# Inspección básica
+str(diabetes)       # estructura del dataset
+summary(diabetes)   # resumen estadístico
+```
+
+## 2. Tablas de frecuencia
+
+**Crea una tabla de frecuencia simple con la variable LOCATION, y una tabla cruzada entre las variables GENDER y FRAME (Frame: pequeño, mediano, grande, constitución corporal).**
+
+```{r}
+# Tabla de frecuencia simple con LOCATION
+table(diabetes$location)
+
+# Tabla cruzada entre GENDER y FRAME
+table(diabetes$gender, diabetes$frame)
+```
+
+## 3. Histograma colesterol total
+
+**Haz un histograma del colesterol total (chol) usando hist(). Personaliza con color skyblue, título “Distribución del colesterol total” y etiqueta del eje X “Colesterol (mg/dl)”.**
+
+```{r}
+hist(diabetes$chol, 
+     col = "skyblue", 
+     main = "Distribución del colesterol total", 
+     xlab = "Colesterol (mg/dl)", 
+     border = "white")
+```
+
+**Guarda el gráfico en archivo PNG con nombre hist_colesterol.png.**
+
+```{r}
+png("hist_colesterol.png", width = 800, height = 600)
+hist(diabetes$chol, 
+     col = "skyblue", 
+     main = "Distribución del colesterol total", 
+     xlab = "Colesterol (mg/dl)", 
+     border = "white")
+dev.off()
+```
+
+## 4. Varios gráficos en una misma ventana
+
+**Usa par(mfrow=c(2,2)). Incluye histograma (el anterior), boxplot, barplot y scatterplot juntos.**
+
+```{r}
+par(mfrow=c(2,2))
+
+# a. Histograma (copia del anterior)
+hist(diabetes$chol, 
+     col = "skyblue", 
+     main = "Distribución del colesterol total", 
+     xlab = "Colesterol (mg/dl)", 
+     border = "white")
+
+# b. Boxplot del HDL
+boxplot(diabetes$hdl, 
+        col = "lightgreen", 
+        main = "Boxplot de HDL", 
+        ylab = "HDL (mg/dl)")
+
+# c. Barplot genero
+barplot(table(diabetes$gender), 
+        col = c("tomato", "lightblue"), 
+        main = "Frecuencia inclusión en el estudio según sexo", 
+        ylab = "Número de individuos")
+
+# d. Scatterplot de peso vs colesterol
+plot(diabetes$weight, diabetes$chol, 
+     col = "darkorange", 
+     pch = 19, 
+     main = "Relación entre peso y colesterol", 
+     xlab = "Peso (lbs)", 
+     ylab = "Colesterol (mg/dl)")
+```

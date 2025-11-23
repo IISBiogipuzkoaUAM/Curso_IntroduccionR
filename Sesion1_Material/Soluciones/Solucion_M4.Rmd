@@ -1,0 +1,109 @@
+---
+title: "Curso Introducción a R en investigación biomédica"
+subtitle: "Solución ejercicios prácticos Modulo4 - Manipulación y reestructuración de datos: Introducción al tidyverse"
+author: "Unidad de Apoyo Metodológico IIS Biogipuzkoa - Lore Zumeta & Jone Renteria"
+date: "Noviembre 2025"
+output: pdf_document
+header-includes:
+  - \usepackage{graphicx}
+  - \usepackage{fancyhdr}
+  - \pagestyle{fancy}
+  - \fancyhead[R]{\includegraphics[width=2cm]{logo.jpg}}
+---
+
+\begin{flushright}
+\includegraphics[width=3cm]{logo.jpg}
+\end{flushright}
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Ejercicios modulo 4
+
+```{r}
+library(dplyr)
+# Cargar datos desde CSV (ajusta la ruta al archivo descargado)
+diabetes <- read.csv("diabetes.csv")
+```
+
+## 1. dplyr::mutate()
+
+**Genera nuevas variables de peso en kg y altura en cm utilizando la función `mutate()`. La relación entre variables es la siguiente:** 
+ 
+- Peso: 1 lb = 0.453592 kg  
+- Altura: 1 in = 2.54 cm  
+
+```{r}
+diabetes2 <- diabetes %>%
+  mutate(peso_kg = weight * 0.453592,
+         altura_cm = height * 2.54)
+
+head(diabetes2)
+```
+
+## 2. dplyr::filter()
+
+**Filtra a los individuos con peso mayor a 100kg**
+
+```{r}
+diabetes3 <- diabetes2 %>%
+  filter(peso_kg > 100)
+
+summary(diabetes3$peso_kg)
+```
+
+## 3. dplyr::filter() y operador AND (&)
+
+**Filtra a los individuos con peso mayor a 100kg y altura menor a 180cm**
+
+```{r}
+diabetes4 <- diabetes2 %>%
+  filter(peso_kg > 100 & altura_cm < 180)
+
+head(diabetes4)
+summary(diabetes4$peso_kg)
+summary(diabetes4$altura_cm)
+```
+
+## 4. Cálculos matemáticos 
+
+**Calcula el promedio de peso en kg por sexo**
+
+```{r}
+diabetes5 <- diabetes2 %>%
+  group_by(gender) %>%
+  summarise(media_peso = mean(peso_kg, na.rm = TRUE)) %>% 
+  ungroup()
+
+diabetes5
+```
+
+## 5. Generar una nueva variable 
+
+**Crea una nueva variable de IMC usando peso en kg y altura en metros (para ello, primero recuerda transformar la altura de cm a m). La fórmula del IMC es la siguiente:**
+- IMC: peso_kg/(altura_m^2)
+
+```{r}
+diabetes6 <- diabetes2 %>%
+  mutate(altura_m = altura_cm / 100,
+         imc = peso_kg / (altura_m^2))
+
+head(diabetes6)
+```
+
+## 6. Todo junto
+
+**Analiza si la persona es diabética o no. Según los autores de la base de datos, utilizando el corte de condición diabética cuando los valores del ratio, variable ratio, son iguales o superiores a 7. Para ello, primero crea la variable diabetico. Además, selecciona las variables diabetico, ratio, edad, peso_kg y peso original y renombra la variable age e indica edad.** 
+
+```{r}
+diabetes7 <- diabetes6 %>%
+  mutate(diabetico = if_else(ratio >= 7, "Sí", "No")) %>% 
+  select(diabetico,ratio, age, peso_kg, weight) %>% 
+  rename(edad = age)
+
+head(diabetes7)
+```
+
+
+ 
