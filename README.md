@@ -1,6 +1,6 @@
 # Curso: Introducción a R en investigación biomédica
 
-Este repositorio contiene los materiales del curso impartido por la **Unidad de Apoyo Metodológico** en **ISS Biogipuzkoa**.
+Este repositorio contiene los materiales del curso impartido por la **Unidad de Apoyo Metodológico** en **IIS Biogipuzkoa**.
 
 ## Objetivos del curso
 
@@ -18,6 +18,6 @@ El curso se divide en dos sesiones:
 
 ## Información adicional
 
-La primera edición del curso se impartió en el **ISS Biogipuzkoa** en noviembre de 2025, en el marco de las formaciones organizadas por las Unidades del centro.
+La primera edición del curso se impartió en el **IIS Biogipuzkoa** en noviembre de 2025, en el marco de las formaciones organizadas por las Unidades del centro.
 
-> **Nota:** Por favor, citar como: Lore Zumeta-Olaskoaga & Jone Renteria (2025): Curso de Introducción a R en Investigación Biomédica (curso IRIB). Repositorio Github. https://github.com/IISBiogipuzkoaUAM/Curso_IntroduccionR/tree/main 
+> **Nota:** Por favor, citar como: Lore Zumeta-Olaskoaga & Jone Renteria (2025): Curso de Introducción a R en Investigación Biomédica (curso IRIB). Repositorio Github. https://github.com/IISBiogipuzkoaUAM/Curso_IntroduccionR/ 
