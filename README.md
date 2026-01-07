@@ -1,5 +1,7 @@
 # Curso: Introducción a R en investigación biomédica
 
+[![DOI](https://zenodo.org/badge/1086364405.svg)](https://doi.org/10.5281/zenodo.18172639)
+
 Este repositorio contiene los materiales del curso impartido por la **Unidad de Apoyo Metodológico** en **IIS Biogipuzkoa**.
 
 ## Objetivos del curso
